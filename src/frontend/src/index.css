@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.1 0 0;
+    --foreground: 0.95 0.01 95;
+    --card: 0.13 0 0;
+    --card-foreground: 0.95 0.01 95;
+    --popover: 0.13 0 0;
+    --popover-foreground: 0.95 0.01 95;
+    --primary: 0.52 0.21 27;
+    --primary-foreground: 0.97 0.01 95;
+    --secondary: 0.18 0.02 20;
+    --secondary-foreground: 0.95 0.01 95;
+    --muted: 0.16 0.01 20;
+    --muted-foreground: 0.65 0.03 50;
+    --accent: 0.78 0.17 85;
+    --accent-foreground: 0.1 0 0;
+    --destructive: 0.52 0.21 27;
+    --destructive-foreground: 0.97 0.01 95;
+    --border: 0.22 0.02 30;
+    --input: 0.22 0.02 30;
+    --ring: 0.78 0.17 85;
+    --radius: 0.5rem;
+    --chart-1: 0.52 0.21 27;
+    --chart-2: 0.78 0.17 85;
+    --chart-3: 0.65 0.19 50;
+    --chart-4: 0.72 0.15 70;
+    --chart-5: 0.45 0.18 20;
+    --sidebar: 0.12 0 0;
+    --sidebar-foreground: 0.95 0.01 95;
+    --sidebar-primary: 0.52 0.21 27;
+    --sidebar-primary-foreground: 0.97 0.01 95;
+    --sidebar-accent: 0.18 0.02 20;
+    --sidebar-accent-foreground: 0.95 0.01 95;
+    --sidebar-border: 0.22 0.02 30;
+    --sidebar-ring: 0.78 0.17 85;
+    --gold: 0.78 0.17 85;
+    --orange: 0.65 0.19 50;
+    --red: 0.52 0.21 27;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Figtree", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
+
+.gold-text {
+  color: oklch(var(--gold));
+}
+
+.gold-gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.78 0.17 85),
+    oklch(0.88 0.12 75),
+    oklch(0.65 0.19 50)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, oklch(var(--red)), oklch(var(--gold)));
+  margin: 0 auto 2rem;
+}
+
+.section-divider-left {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, oklch(var(--red)), oklch(var(--gold)));
+  margin: 0 0 2rem;
+}
+
+/* Gallery hover */
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item img {
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Menu card hover */
+.menu-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.menu-card:hover .menu-card-overlay {
+  opacity: 1;
+}
+
+/* Noise texture overlay */
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.1 0 0);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.52 0.21 27);
+  border-radius: 3px;
+}
